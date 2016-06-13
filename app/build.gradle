@@ -26,4 +26,9 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${rootProject.ext.androidSupportLibraryVersion}"
     compile project(':rangeseekbar')
     compile project(':pulltorefreshandloadmore')
+
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+
 }

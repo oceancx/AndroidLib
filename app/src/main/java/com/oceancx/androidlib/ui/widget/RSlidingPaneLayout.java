@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.widget;
+package com.oceancx.androidlib.ui.widget;
 
 /*
  * Copyright (C) 2012 The Android Open Source Project

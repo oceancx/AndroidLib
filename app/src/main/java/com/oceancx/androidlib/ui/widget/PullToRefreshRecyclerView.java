@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.widget;
+package com.oceancx.androidlib.ui.widget;
 
 /**
  * 依赖于PullToRefreshLibrary

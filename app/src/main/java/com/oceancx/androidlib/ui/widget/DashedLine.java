@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.widget;
+package com.oceancx.androidlib.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

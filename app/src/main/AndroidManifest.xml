@@ -27,7 +27,7 @@
         <activity android:name=".main.CheckBoxActivity" />
         <activity android:name=".main.PullToRefreshAndLoadMoreActivity" />
         <activity android:name=".main.MediaPlayerActivity" />
-        <activity android:name=".QA.ListViewContainsEditText" />
+        <activity android:name=".main.ListViewContainsEditText" />
         <activity android:name=".main.CameraActivity" />
         <activity android:name=".main.VideoActivity" />
     </application>

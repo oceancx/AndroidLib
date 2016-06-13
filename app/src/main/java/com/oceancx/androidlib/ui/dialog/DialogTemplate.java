@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.dialog;
+package com.oceancx.androidlib.ui.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

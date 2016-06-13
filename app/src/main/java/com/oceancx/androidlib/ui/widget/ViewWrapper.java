@@ -2,7 +2,7 @@
  * Copyright (c) 2016. BiliBili Inc.
  */
 
-package com.oceancx.androidlib.widget;
+package com.oceancx.androidlib.ui.widget;
 
 import android.content.Context;
 import android.graphics.Rect;

@@ -1,8 +1,4 @@
-/*
- * Copyright (c) 2016. BiliBili Inc.
- */
-
-package com.oceancx.androidlib.widget;
+package com.oceancx.androidlib.ui.widget;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -10,37 +6,39 @@ import android.util.AttributeSet;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
 /**
- * Created by oceancx on 16/6/2.
+ * 对里面的CompoundButton(RadioButton/CheckBox)设置了TouchDelegate,用来扩大(RadioButton/CheckBox)的点击区域
+ * Created by oceancx on 15/12/26.
  */
-public class CompoundButtonLayout extends FrameLayout {
-    CompoundButton cb;
+public class FrameLayoutCheckBox extends FrameLayout {
+    CompoundButton cbx;
 
-    public CompoundButtonLayout(Context context) {
+    public FrameLayoutCheckBox(Context context) {
         super(context);
     }
 
-    public CompoundButtonLayout(Context context, AttributeSet attrs) {
+    public FrameLayoutCheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-
-    public CompoundButtonLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FrameLayoutCheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    private CompoundButton findCompoundButton(View view) {
+    private CheckBox findCheckBox(View view) {
+        //无递归广度优先遍历寻找CheckBox - -!我只是想重温一下C
         ArrayList<View> views = new ArrayList<>();
         views.add(view);
         while (!views.isEmpty()) {
             View c = views.remove(0);
-            if (c instanceof CompoundButton) {
-                return (CompoundButton) c;
+            if (c instanceof CheckBox) {
+                return (CheckBox) c;
             } else if (c instanceof ViewGroup) {
                 ViewGroup fa = (ViewGroup) c;
                 for (int i = 0; i < fa.getChildCount(); i++) {
@@ -55,22 +53,18 @@ public class CompoundButtonLayout extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         if (getChildCount() > 0) {
-            cb = findCompoundButton(this);
+            View child = findCheckBox(this);
+            if (child instanceof CompoundButton) cbx = (CompoundButton) child;
         }
-
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        if (cb != null) {
+        if (cbx != null) {
             Rect bounds = new Rect(getPaddingLeft(), getPaddingTop(), getPaddingLeft() + getMeasuredWidth() + getPaddingRight(), getPaddingTop() + getMeasuredHeight() + getPaddingBottom());
-            TouchDelegate delegate = new TouchDelegate(bounds, cb);
+            TouchDelegate delegate = new TouchDelegate(bounds, cbx);
             setTouchDelegate(delegate);
         }
-
     }
-
-
 }

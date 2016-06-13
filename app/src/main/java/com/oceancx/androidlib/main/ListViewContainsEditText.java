@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.QA;
+package com.oceancx.androidlib.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

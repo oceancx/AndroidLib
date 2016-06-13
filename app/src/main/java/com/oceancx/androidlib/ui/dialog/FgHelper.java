@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.dialog;
+package com.oceancx.androidlib.ui.dialog;
 
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
