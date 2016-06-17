@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="?attr/borderlessButtonStyle"
@@ -14,513 +12,120 @@
 
         <com.oceancx.androidlib.ui.widget.MultiLineLayout
             android:id="@+id/multi_line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
 
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#afc" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
+                android:textSize="9sp" />
 
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="asdqwlkejweqweasd;lasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
+                android:textSize="40sp" />
 
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwlkejweqweasd;lasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
+                android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
+            <Button
                 android:layout_width="20dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="250dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="33dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="350dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="99dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#cfc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aee" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#fcc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#a1c" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#afc" />
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textSize="4sp" />
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textSize="4sp" />
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textSize="4sp" />
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textSize="4sp" />
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textSize="4sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="a"
+                android:textSize="4sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:padding="58dp"
+                android:text="asdqwl" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:text="asdqwlkejweqweasd;lasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
+                android:textSize="33sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwlkejweqweasd;lasjdlasjd" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ajdlksajlzx,mcn,zxmnc,the fuck" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwlkejk"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwlkejweqweasd;lasjdlasjd" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ajdlksajlzx,mcn,zxmnc,the fuck" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdqwlkeqlhkjlkqjheklqjhwekjlhqwjk"
+                android:textSize="50sp" />
 
         </com.oceancx.androidlib.ui.widget.MultiLineLayout>
 
