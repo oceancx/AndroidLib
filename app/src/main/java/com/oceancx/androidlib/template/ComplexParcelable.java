@@ -1,4 +1,4 @@
-package com.oceancx.androidlib.simpleclass;
+package com.oceancx.androidlib.template;
 
 import android.os.Parcel;
 import android.os.Parcelable;
