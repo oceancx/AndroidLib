@@ -23,6 +23,12 @@ import com.oceancx.androidlib.R;
 public class MultiLineLayout extends LinearLayout {
     /**
      * 用对孩子的weight进行划分
+     * 每行的WeightSum  首先 默认每行的weightSum=1
+     * 然后 检测每个待测量的孩子节点 如果其Weight ！=0  那么就计算出specSize 用这个spec来测量孩子
+     * 然后 还按照之前的布局方法进行布局即可
+     * 布局之后weightSum-= childWeight
+     * 如果weight>weightSum ，进行换行
+     * 换行后weighSum复原
      */
     float mWeightSum;
 
@@ -37,7 +43,7 @@ public class MultiLineLayout extends LinearLayout {
     public MultiLineLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MultiLineLayout, 0, defStyleAttr);
-        mWeightSum = a.getFloat(R.styleable.MultiLineLayout_android_weightSum, -1f);
+        mWeightSum = a.getFloat(R.styleable.MultiLineLayout_android_weightSum, 1f);
         DebugLog.e("mWeightSum:" + mWeightSum);
         a.recycle();
     }
@@ -46,10 +52,11 @@ public class MultiLineLayout extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         for (int i = 0; i < getChildCount(); i++) {
-//            TextView tv = (TextView) getChildAt(i);
-//            tv.setText(i + "");
-//            tv.setGravity(Gravity.CENTER);
-            //    tv.setBackgroundColor((int) ((0xff << 24) + Math.random() * 0xffffff));
+            LayoutParams params = (LayoutParams) getChildAt(i).getLayoutParams();
+            DebugLog.e("weight:" + params.weight);
+            if (params.weight > mWeightSum) {
+                mWeightSum = params.weight;
+            }
         }
     }
 
@@ -72,25 +79,43 @@ public class MultiLineLayout extends LinearLayout {
         int lineWidth = 0;
         int totalHeight = 0;
         boolean readEnd = false;
+        float lineWeight = mWeightSum;
+        boolean nextLineByWeight = false;
+        int measureSpecByWeight;
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
+                /**
+                 * 设置
+                 */
+                nextLineByWeight = false;
+                measureSpecByWeight = widthMeasureSpec;
                 LayoutParams lp = (LayoutParams) child.getLayoutParams();
-                lineWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-                if (lineWidth > specWidth - getPaddingLeft() - getPaddingRight()) {
+                if (lp.weight > 0 && lineWeight >= lp.weight) {
+                    float specSize = specWidth * lp.weight * 1.0f / mWeightSum;
+                    measureSpecByWeight = MeasureSpec.makeMeasureSpec((int) specSize, MeasureSpec.getMode(widthMeasureSpec));
+                    lineWeight -= lp.weight;
+                } else if (lp.weight > 0) {
+                    lineWeight = mWeightSum;
+                    float specSize = specWidth * lp.weight * 1.0f / mWeightSum;
+                    measureSpecByWeight = MeasureSpec.makeMeasureSpec((int) specSize, MeasureSpec.getMode(widthMeasureSpec));
+                    lineWeight -= lp.weight;
+                    nextLineByWeight = true;
+                }
+                measureChildWithMargins(child, measureSpecByWeight, 0, heightMeasureSpec, 0);
+                if (!nextLineByWeight)
+                    lineWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+                if (lineWidth > specWidth - getPaddingLeft() - getPaddingRight() || nextLineByWeight) {
                     /**
-                     * 开始新的一行
+                     * 开始新的一行布局
                      */
                     lineWidth = 0;
                     readEnd = true;
                     totalHeight += maxHeight;
-                    DebugLog.e(i + "\tin Loop:totalHeight:" + totalHeight);
                     maxHeight = 0;
                     i--;
                 }
                 maxHeight = Math.max(maxHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-                DebugLog.e(i + "\ttotalHeight:" + totalHeight);
             }
         }
         if (readEnd) {
@@ -103,19 +128,14 @@ public class MultiLineLayout extends LinearLayout {
 
         lineWidth += getPaddingLeft() + getPaddingRight();
         lineWidth = Math.max(lineWidth, getSuggestedMinimumWidth());
-        DebugLog.e("heigth:" + totalHeight);
-        DebugLog.e("heightSize:" + MeasureSpec.getSize(heightMeasureSpec) + " mode:" + MeasureSpec.getMode(heightMeasureSpec));
         setMeasuredDimension(resolveSize(lineWidth, widthMeasureSpec), resolveSize(totalHeight, heightMeasureSpec));
-        DebugLog.e("parent width:" + getMeasuredWidth() + " parent height:" + getMeasuredHeight());
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        DebugLog.e("left:" + left + " top:" + top + " right:" + right + " bottom:" + bottom);
         int startLeft, startTop;
         startLeft = 0;
         startTop = 0;
-        DebugLog.e("startLeft:" + getPaddingLeft() + " startTop:" + getPaddingTop());
         int maxHeight = 0;
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);

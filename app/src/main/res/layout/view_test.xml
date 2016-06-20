@@ -14,47 +14,53 @@
             android:id="@+id/multi_line"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:weightSum="12">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="sjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
                 android:textSize="9sp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_weight="2"
                 android:text="asdqwlkejweqweasd;lasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
                 android:textSize="40sp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 android:text="asdqwlkejweqweasd;lasjdlasjdl;sajdlksajlzx,mcn,zxmnc,the fuck"
                 android:textSize="20sp" />
 
             <Button
-                android:layout_width="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="4"
                 android:text="a"
                 android:textSize="4sp" />
 
             <Button
-                android:layout_width="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:text="a"
                 android:textSize="4sp" />
 
             <Button
-                android:layout_width="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="a"
                 android:textSize="4sp" />
 
             <Button
-                android:layout_width="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="a"
                 android:textSize="4sp" />
