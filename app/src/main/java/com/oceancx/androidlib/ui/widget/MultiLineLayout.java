@@ -18,7 +18,7 @@ import com.oceancx.androidlib.R;
  * 支持Weight的多行线性布局
  * Child 从左往右依次布局 如果长度超过本身长度 就往下布局
  * 每行开始布局的时候 重新设置weightSum 然后支持孩子节点的weight
- * Created by bilibili on 2016/6/13.
+ * Created by oceancx on 2016/6/13.
  */
 public class MultiLineLayout extends LinearLayout {
     /**
@@ -71,6 +71,54 @@ public class MultiLineLayout extends LinearLayout {
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int parentSize = MeasureSpec.getSize(widthMeasureSpec);
+        int parentMode = MeasureSpec.getMode(widthMeasureSpec);
+
+        /**
+         * 求出这个变量 就能确定视图的高度了
+         */
+        int heightSize = 0;
+        int parentMaxWidth = 0;
+
+        boolean determinedSpecWidth = false;
+        int determinedWidth = getPaddingLeft() + getPaddingRight();
+        int maxChildHeight = 0;
+
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            int childWidth = 0;
+            int childPadding = 0;
+            int childSpace = 0;
+            if (child.getVisibility() != GONE) {
+                measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
+                LayoutParams lp = (LayoutParams) child.getLayoutParams();
+                /**
+                 * 测量算法：
+                 * 1. 确定行宽
+                 * 2. 一个一个确定孩子宽度
+                 * 3. 按宽度布局，超过行宽就换行
+                 */
+                childWidth = child.getMeasuredWidth();
+                childPadding = lp.leftMargin + lp.rightMargin;
+                childSpace = childWidth + childPadding;
+
+                if (!determinedSpecWidth) {
+                    determinedWidth += childSpace;
+                    if (determinedWidth >= parentSize) {
+                        determinedWidth = parentSize;
+                        determinedSpecWidth = true;
+                    }
+                }
+
+                maxChildHeight += lp.topMargin + lp.bottomMargin + child.getMeasuredHeight();
+                if (determinedSpecWidth) {
+
+                }
+            }
+        }
+
+
         /**
          * 这个值代表着横向布局的最大空间
          */
