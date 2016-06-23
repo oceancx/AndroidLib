@@ -1,15 +1,11 @@
 package com.oceancx.androidlib.ui.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.text.style.TtsSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.oceancx.androidlib.DebugLog;
-import com.oceancx.androidlib.R;
+import java.util.ArrayList;
 
 /**
  * MultiLinearLayout
@@ -23,14 +19,10 @@ import com.oceancx.androidlib.R;
 public class MultiLineLayout extends LinearLayout {
     /**
      * 用对孩子的weight进行划分
-     * 每行的WeightSum  首先 默认每行的weightSum=1
      * 然后 检测每个待测量的孩子节点 如果其Weight ！=0  那么就计算出specSize 用这个spec来测量孩子
      * 然后 还按照之前的布局方法进行布局即可
-     * 布局之后weightSum-= childWeight
-     * 如果weight>weightSum ，进行换行
-     * 换行后weighSum复原
      */
-    float mWeightSum;
+    ArrayList<Integer> mMaxHeights;
 
     public MultiLineLayout(Context context) {
         this(context, null);
@@ -42,22 +34,7 @@ public class MultiLineLayout extends LinearLayout {
 
     public MultiLineLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MultiLineLayout, 0, defStyleAttr);
-        mWeightSum = a.getFloat(R.styleable.MultiLineLayout_android_weightSum, 1f);
-        DebugLog.e("mWeightSum:" + mWeightSum);
-        a.recycle();
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        for (int i = 0; i < getChildCount(); i++) {
-            LayoutParams params = (LayoutParams) getChildAt(i).getLayoutParams();
-            DebugLog.e("weight:" + params.weight);
-            if (params.weight > mWeightSum) {
-                mWeightSum = params.weight;
-            }
-        }
+        mMaxHeights = new ArrayList<>();
     }
 
     /**
@@ -74,12 +51,13 @@ public class MultiLineLayout extends LinearLayout {
 
         int parentSize = MeasureSpec.getSize(widthMeasureSpec);
         int parentMode = MeasureSpec.getMode(widthMeasureSpec);
-
         /**
          * 求出这个变量 就能确定视图的高度了
          */
         int heightSize = 0;
-        int parentMaxWidth = 0;
+        int mMaxHeightSeparatorIndex = 0;
+        mMaxHeights.clear();
+        float mWeightSum = getWeightSum();
 
         boolean determinedSpecWidth = false;
         int determinedWidth = getPaddingLeft() + getPaddingRight();
@@ -87,21 +65,27 @@ public class MultiLineLayout extends LinearLayout {
         int lineWidth = getPaddingLeft() + getPaddingRight();
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            int childWidth = 0;
-            int childPadding = 0;
-            int childSpace = 0;
             if (child.getVisibility() != GONE) {
-                measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
+                /**
+                 * 根据weight 更改measureSpec
+                 * 有weight的情况下 就按weight测试的布局
+                 */
                 LayoutParams lp = (LayoutParams) child.getLayoutParams();
+                int childWidthMeasureSpec = widthMeasureSpec;
+                double ratio;
+                if (lp.weight != 0 && mWeightSum > 0) {
+                    ratio = lp.weight * 1.0f / mWeightSum;
+                    childWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int) Math.round(parentSize * ratio), parentMode);
+                }
+
+                measureChildWithMargins(child, childWidthMeasureSpec, 0, heightMeasureSpec, 0);
                 /**
                  * 测量算法：
                  * 1. 确定行宽
                  * 2. 一个一个确定孩子宽度
                  * 3. 按宽度布局，超过行宽就换行
                  */
-                childWidth = child.getMeasuredWidth();
-                childPadding = lp.leftMargin + lp.rightMargin;
-                childSpace = childWidth + childPadding;
+                int childSpace = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
 
                 if (!determinedSpecWidth) {
                     determinedWidth += childSpace;
@@ -114,14 +98,22 @@ public class MultiLineLayout extends LinearLayout {
                 if (determinedSpecWidth && lineWidth > parentSize) {
                     lineWidth = getPaddingLeft() + getPaddingRight();
                     heightSize += maxChildHeight;
+                    int mMaxHeightsSize = mMaxHeights.size();
+                    for (int j = mMaxHeightsSize; j < mMaxHeightSeparatorIndex; j++)
+                        mMaxHeights.add(maxChildHeight);
                     maxChildHeight = 0;
                     i--;
-
+                } else {
+                    maxChildHeight = Math.max(maxChildHeight, lp.topMargin + lp.bottomMargin + child.getMeasuredHeight());
+                    mMaxHeightSeparatorIndex++;
                 }
-                maxChildHeight = Math.max(maxChildHeight, lp.topMargin + lp.bottomMargin + child.getMeasuredHeight());
             }
         }
         heightSize += maxChildHeight;
+        int mMaxHeightsSize = mMaxHeights.size();
+        for (int j = mMaxHeightsSize; j < mMaxHeightSeparatorIndex; j++)
+            mMaxHeights.add(maxChildHeight);
+
         heightSize += getPaddingTop() + getPaddingBottom();
 
         if (determinedSpecWidth) {
@@ -141,14 +133,15 @@ public class MultiLineLayout extends LinearLayout {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
                 LayoutParams lp = (LayoutParams) child.getLayoutParams();
-                if (startLeft + child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin + getPaddingRight() > right - left) {
+                int childSpace = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+                if (startLeft + childSpace + getPaddingRight() > getMeasuredWidth()) {
                     startLeft = getPaddingLeft();
                     startTop += maxHeight;
                     maxHeight = getPaddingTop();
                 }
                 int layoutLeft, layoutTop;
                 layoutLeft = startLeft + lp.leftMargin;
-                layoutTop = startTop + lp.topMargin;
+                layoutTop = startTop + mMaxHeights.get(i) - child.getMeasuredHeight() - lp.bottomMargin;
                 child.layout(layoutLeft, layoutTop, layoutLeft + child.getMeasuredWidth(), layoutTop + child.getMeasuredHeight());
                 maxHeight = Math.max(maxHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
                 startLeft += child.getMeasuredWidth();

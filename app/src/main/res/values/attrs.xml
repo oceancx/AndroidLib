@@ -6,8 +6,4 @@
         <attr name="foregroundInsidePadding" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="MultiLineLayout">
-        <attr name="android:weightSum" />
-    </declare-styleable>
-
 </resources>

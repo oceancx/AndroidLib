@@ -18,7 +18,7 @@ import com.oceancx.androidlib.ui.widget.MultiLineLayout;
  */
 public class ViewTestActivity extends AppCompatActivity {
 
-    LinearLayout multiLineLayout;
+    MultiLineLayout multiLineLayout;
 
     View view;
 
@@ -28,7 +28,7 @@ public class ViewTestActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_test);
-        multiLineLayout = (LinearLayout) findViewById(R.id.multi_line);
+        multiLineLayout = (MultiLineLayout) findViewById(R.id.multi_line);
 
         for (int i = 0; i < multiLineLayout.getChildCount(); i++) {
             multiLineLayout.getChildAt(i).setTag(i);
