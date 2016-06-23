@@ -84,7 +84,7 @@ public class MultiLineLayout extends LinearLayout {
         boolean determinedSpecWidth = false;
         int determinedWidth = getPaddingLeft() + getPaddingRight();
         int maxChildHeight = 0;
-
+        int lineWidth = getPaddingLeft() + getPaddingRight();
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             int childWidth = 0;
@@ -110,89 +110,41 @@ public class MultiLineLayout extends LinearLayout {
                         determinedSpecWidth = true;
                     }
                 }
-
-                maxChildHeight += lp.topMargin + lp.bottomMargin + child.getMeasuredHeight();
-                if (determinedSpecWidth) {
-
-                }
-            }
-        }
-
-
-        /**
-         * 这个值代表着横向布局的最大空间
-         */
-        int specWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int maxHeight = 0;
-        int lineWidth = 0;
-        int totalHeight = 0;
-        boolean readEnd = false;
-        float lineWeight = mWeightSum;
-        boolean nextLineByWeight = false;
-        int measureSpecByWeight;
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            if (child.getVisibility() != GONE) {
-                /**
-                 * 设置
-                 */
-                nextLineByWeight = false;
-                measureSpecByWeight = widthMeasureSpec;
-                LayoutParams lp = (LayoutParams) child.getLayoutParams();
-                if (lp.weight > 0 && lineWeight >= lp.weight) {
-                    float specSize = specWidth * lp.weight * 1.0f / mWeightSum;
-                    measureSpecByWeight = MeasureSpec.makeMeasureSpec((int) specSize, MeasureSpec.getMode(widthMeasureSpec));
-                    lineWeight -= lp.weight;
-                } else if (lp.weight > 0) {
-                    lineWeight = mWeightSum;
-                    float specSize = specWidth * lp.weight * 1.0f / mWeightSum;
-                    measureSpecByWeight = MeasureSpec.makeMeasureSpec((int) specSize, MeasureSpec.getMode(widthMeasureSpec));
-                    lineWeight -= lp.weight;
-                    nextLineByWeight = true;
-                }
-                measureChildWithMargins(child, measureSpecByWeight, 0, heightMeasureSpec, 0);
-                if (!nextLineByWeight)
-                    lineWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-                if (lineWidth > specWidth - getPaddingLeft() - getPaddingRight() || nextLineByWeight) {
-                    /**
-                     * 开始新的一行布局
-                     */
-                    lineWidth = 0;
-                    readEnd = true;
-                    totalHeight += maxHeight;
-                    maxHeight = 0;
+                lineWidth += childSpace;
+                if (determinedSpecWidth && lineWidth > parentSize) {
+                    lineWidth = getPaddingLeft() + getPaddingRight();
+                    heightSize += maxChildHeight;
+                    maxChildHeight = 0;
                     i--;
+
                 }
-                maxHeight = Math.max(maxHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+                maxChildHeight = Math.max(maxChildHeight, lp.topMargin + lp.bottomMargin + child.getMeasuredHeight());
             }
         }
-        if (readEnd) {
-            lineWidth = specWidth;
-        }
-        totalHeight += maxHeight;
-        MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
-        totalHeight += getPaddingTop() + getPaddingBottom() + params.topMargin + params.bottomMargin;
-        totalHeight = Math.max(totalHeight, getSuggestedMinimumHeight());
+        heightSize += maxChildHeight;
+        heightSize += getPaddingTop() + getPaddingBottom();
 
-        lineWidth += getPaddingLeft() + getPaddingRight();
-        lineWidth = Math.max(lineWidth, getSuggestedMinimumWidth());
-        setMeasuredDimension(resolveSize(lineWidth, widthMeasureSpec), resolveSize(totalHeight, heightMeasureSpec));
+        if (determinedSpecWidth) {
+            setMeasuredDimension(resolveSize(determinedWidth, widthMeasureSpec), resolveSize(heightSize, heightMeasureSpec));
+        } else {
+            setMeasuredDimension(resolveSize(lineWidth, widthMeasureSpec), resolveSize(heightSize, heightMeasureSpec));
+        }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int startLeft, startTop;
-        startLeft = 0;
-        startTop = 0;
+        startLeft = getPaddingLeft();
+        startTop = getPaddingTop();
         int maxHeight = 0;
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
                 LayoutParams lp = (LayoutParams) child.getLayoutParams();
                 if (startLeft + child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin + getPaddingRight() > right - left) {
-                    startLeft = 0;
+                    startLeft = getPaddingLeft();
                     startTop += maxHeight;
-                    maxHeight = 0;
+                    maxHeight = getPaddingTop();
                 }
                 int layoutLeft, layoutTop;
                 layoutLeft = startLeft + lp.leftMargin;

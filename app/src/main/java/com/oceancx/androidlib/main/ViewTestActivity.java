@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import com.oceancx.androidlib.ui.widget.MultiLineLayout;
  */
 public class ViewTestActivity extends AppCompatActivity {
 
-    MultiLineLayout multiLineLayout;
+    LinearLayout multiLineLayout;
 
     View view;
 
@@ -27,7 +28,7 @@ public class ViewTestActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_test);
-        multiLineLayout = (MultiLineLayout) findViewById(R.id.multi_line);
+        multiLineLayout = (LinearLayout) findViewById(R.id.multi_line);
 
         for (int i = 0; i < multiLineLayout.getChildCount(); i++) {
             multiLineLayout.getChildAt(i).setTag(i);
