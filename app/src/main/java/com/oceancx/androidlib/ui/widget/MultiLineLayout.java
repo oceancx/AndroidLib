@@ -75,7 +75,12 @@ public class MultiLineLayout extends LinearLayout {
                 double ratio;
                 if (lp.weight != 0 && mWeightSum > 0) {
                     ratio = lp.weight * 1.0f / mWeightSum;
-                    childWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int) Math.round(parentSize * ratio), parentMode);
+                    double size = parentSize * ratio;
+                    if (i % 2 == 0)
+                        size = Math.floor(size);
+                    else
+                        size = Math.ceil(size);
+                    childWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int) size, parentMode);
                 }
 
                 measureChildWithMargins(child, childWidthMeasureSpec, 0, heightMeasureSpec, 0);
@@ -144,7 +149,7 @@ public class MultiLineLayout extends LinearLayout {
                 layoutTop = startTop + mMaxHeights.get(i) - child.getMeasuredHeight() - lp.bottomMargin;
                 child.layout(layoutLeft, layoutTop, layoutLeft + child.getMeasuredWidth(), layoutTop + child.getMeasuredHeight());
                 maxHeight = Math.max(maxHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-                startLeft += child.getMeasuredWidth();
+                startLeft += childSpace;
             }
         }
     }

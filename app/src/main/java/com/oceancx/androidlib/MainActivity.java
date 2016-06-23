@@ -10,10 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.oceancx.androidlib.main.CameraActivity;
-import com.oceancx.androidlib.main.VideoActivity;
-import com.oceancx.androidlib.main.ViewTestActivity;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,7 +19,7 @@ public class MainActivity extends ListActivity {
     private ActivityInfo target;
     private ArrayList<ActivityInfo> mActivities;
     private String packageName = "com.oceancx.androidlib";
-    private String desiredPackageName = "ViewTestActivity";
+    private String desiredPackageName = "MultiLineLayoutActivity";
 
 
     protected void onCreate(Bundle savedInstanceState) {

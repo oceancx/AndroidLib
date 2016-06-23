@@ -10,3 +10,9 @@ RangeSeekBar => 涉及源码文件:RangeSeekBar.java,RangeSeekActivity.java.
 
 1. 添加两种模式 时间范围选择 整数范围选择
 2. 添加setSeekRange方法 可以重新设置控件
+
+2016-6-23-更新：
+
+新增MultiLineLayout用于简单的多行布局，
+
+<img src="https://github.com/oceancx/AndroidLib/blob/master/gif/multiline.png" width="500">

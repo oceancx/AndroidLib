@@ -30,7 +30,7 @@
         <activity android:name=".main.ListViewContainsEditText" />
         <activity android:name=".main.CameraActivity" />
         <activity android:name=".main.VideoActivity" />
-        <activity android:name=".main.ViewTestActivity" />
+        <activity android:name=".main.MultiLineLayoutActivity" />
     </application>
 
 </manifest>
