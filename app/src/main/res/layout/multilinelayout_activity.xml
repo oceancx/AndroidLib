@@ -3,14 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="?attr/borderlessButtonStyle"
-    android:orientation="horizontal">
-
+    android:orientation="vertical">
 
     <com.oceancx.androidlib.ui.widget.MultiLineLayout
         android:id="@+id/multi_line1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
         android:weightSum="10" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <com.oceancx.androidlib.ui.widget.MultiLineLayout
+        android:id="@+id/multi_line2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="10" />
 
 </LinearLayout>
