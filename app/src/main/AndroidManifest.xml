@@ -31,6 +31,7 @@
         <activity android:name=".main.CameraActivity" />
         <activity android:name=".main.VideoActivity" />
         <activity android:name=".main.MultiLineLayoutActivity" />
+        <activity android:name=".main.SpanActivity"/>
     </application>
 
 </manifest>
